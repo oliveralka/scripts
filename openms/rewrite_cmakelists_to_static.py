@@ -11,18 +11,21 @@ SET(CMAKE_EXE_LINKER_FLAGS "-static")
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", type=str, required=True)    
-    parser.add_argument("-o", type=str, required=True)
+    parser.add_argument("infile", type=str)
     args = parser.parse_args()
-    with open(args.i, 'r') as inhandle:
-        with open(args.o, 'w') as outhandle:
-            for line in inhandle:
-                line = line.strip()
-                if line.startswith("project"):
-                    line = line + static
-                elif 'BUILD_SHARED_LIBS' in line:
-                    line = 'set(BUILD_SHARED_LIBS false)'
-                outhandle.write(line + '\n')
+
+    lines = []
+    with open(args.infile, 'r') as inhandle:
+        for line in inhandle:
+            if line.startswith('project'):
+                line = line + static
+            elif 'BUILD_SHARED_LIBS' in line:
+                line = 'set(BUILD_SHARED_LIBS false)\n'
+            lines.append(line)
+    with open(args.infile, 'w') as outhandle:
+        for line in lines:
+            outhandle.write(line)
+
 
 if __name__ == '__main__':
     main()
