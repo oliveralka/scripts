@@ -20,7 +20,7 @@ def main():
     # Output new lines
     def print_line(line, pipe, last=False):
         line = line.strip()
-        result = "'{}' {} {} ".format(line, pipe, args.FILE)
+        result = "echo '{}' {} {} ".format(line, pipe, args.FILE)
         end = '&& sync' if last else '\\'
         print(result + end)
 
