@@ -7,14 +7,19 @@ import sys
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('FILE', type=str)
+    parser.add_argument('-c', type=str, required=False)
     args = parser.parse_args()
 
     if not os.path.isfile(args.FILE):
         print("FATAL: Input file must be regular file", file=sys.stderr)
         sys.exit(1)
 
+    comment_prefix = args.c
+    not_use_comment = args.c is None
+
     with open(args.FILE, 'r') as infile:
-        lines = [ line for line in infile if line.strip() ]
+        lines = [ line for line in infile
+                    if line.strip() and (not_use_comment or not line.startswith(comment_prefix))]
 
     n_lines = len(lines)
     # Output new lines
