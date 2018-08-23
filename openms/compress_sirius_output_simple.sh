@@ -9,4 +9,4 @@ second argument = all files that should be zipped (e.g. *)
 @author: Oliver Alka 
 """
 
-zip $1 ${@:2}
+zip -j $1 ${@:2}
