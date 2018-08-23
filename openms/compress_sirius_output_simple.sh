@@ -1,6 +1,6 @@
 #!/bin/bash
 """
-Created on Fri Aug 15
+Created on Fri Aug 23
 
 Compress sirius output 
 first argument = output file (e.g. archive.zip)
