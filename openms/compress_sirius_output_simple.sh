@@ -10,4 +10,4 @@ second argument = all files that should be zipped (e.g. *)
 @author: Oliver Alka
 COMMENT
 
-zip -jr $1 ${@:2}
+zip -r $1 ${@:2}
