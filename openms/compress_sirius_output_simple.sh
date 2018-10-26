@@ -10,4 +10,5 @@ second argument = all files that should be zipped (e.g. *)
 @author: Oliver Alka
 COMMENT
 
-zip -j $1 ${@:2}
+# do not use j since sirius workspace is not unique
+zip -r $1 ${@:2} 

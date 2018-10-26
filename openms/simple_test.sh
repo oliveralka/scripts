@@ -10,4 +10,4 @@ second argument = number of compounds counted for split
 @author: Oliver Alka 
 COMMENT
 
-awk '/>compound/ { delim++ } { file = sprintf("%s.ms", int(delim / '$2')); print >> file; close(file); }' $1 
+ls -l $@
